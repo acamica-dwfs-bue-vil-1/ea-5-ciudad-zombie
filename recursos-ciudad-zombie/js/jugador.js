@@ -12,8 +12,25 @@ var Jugador = {
   vidas: 5,
   // Hay que agregar lo que falte al jugador: movimientos, perdida de vidas,
   // y todo lo que haga falta para que cumpla con sus responsabilidades
-  mover: (x1, y1) => {
-    Jugador.x += x1;
-    Jugador.y += y1;
+  mover: (movX, movY) => {
+    Jugador.x += movX;
+    Jugador.y += movY;
   },
+
+  girar: (tecla) => {
+    switch (tecla) {
+      case 'izq':
+        Jugador.sprite = 'imagenes/auto_rojo_izquierda.png';
+        break;
+      case 'der':
+        Jugador.sprite = 'imagenes/auto_rojo_derecha.png';
+        break;
+      case 'arriba':
+        Jugador.sprite = 'imagenes/auto_rojo_arriba.png';
+        break;
+      case 'abajo':
+        Jugador.sprite = 'imagenes/auto_rojo_abajo.png';
+        break;
+    }
+  }
 }

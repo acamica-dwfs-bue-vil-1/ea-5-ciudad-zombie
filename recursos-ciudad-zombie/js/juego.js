@@ -133,6 +133,7 @@ Juego.capturarMovimiento = function(tecla) {
 
     /* COMPLETAR */
     Jugador.mover(movX, movY);
+    Jugador.girar(tecla);
   }
 };
 

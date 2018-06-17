@@ -20,8 +20,16 @@ var Juego = {
   obstaculosCarretera: [
     /*Aca se van a agregar los obstaculos visibles. Tenemos una valla horizontal
     de ejemplo, pero podras agregar muchos mas. */
-    new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1)
-
+    new VallaHorizontal(70, 430),
+    new VallaHorizontal(540, 300),
+    new Bache(130, 260),
+    new Bache(760, 265),    
+    new Bache(780, 268),    
+    new Bache(852, 290),    
+    new AutoVerdeAbajo(283, 180),
+    new AutoVerdeAbajo(820, 410),
+    new AutoVerdeAbajo(837, 422),
+    new AutoVerdeDerecha(330, 120)
   ],
   /* Estos son los bordes con los que se puede chocar, por ejemplo, la vereda.
    Ya estan ubicados en sus lugares correspondientes. Ya aparecen en el mapa, ya
@@ -33,14 +41,14 @@ var Juego = {
     new Obstaculo('', 0, 5, 18, 572, 0),
     new Obstaculo('', 943, 5, 18, 572, 0),
     // Veredas
-    new Obstaculo('', 18, 23, 51, 536, 2),
-    new Obstaculo('', 69, 507, 690, 52, 2),
-    new Obstaculo('', 587, 147, 173, 360, 2),
-    new Obstaculo('', 346, 147, 241, 52, 2),
-    new Obstaculo('', 196, 267, 263, 112, 2),
-    new Obstaculo('', 196, 23, 83, 244, 2),
-    new Obstaculo('', 279, 23, 664, 56, 2),
-    new Obstaculo('', 887, 79, 56, 480, 2)
+    new Obstaculo('', 18, 23, 51, 536, 1),
+    new Obstaculo('', 69, 507, 690, 52, 1),
+    new Obstaculo('', 587, 147, 173, 360, 1),
+    new Obstaculo('', 346, 147, 241, 52, 1),
+    new Obstaculo('', 196, 267, 263, 112, 1),
+    new Obstaculo('', 196, 23, 83, 244, 1),
+    new Obstaculo('', 279, 23, 664, 56, 1),
+    new Obstaculo('', 887, 79, 56, 480, 1)
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
@@ -132,8 +140,8 @@ Juego.capturarMovimiento = function(tecla) {
     de sus metodos  */
 
     /* COMPLETAR */
-    Jugador.mover(movX, movY);
-    Jugador.girar(tecla);
+    this.jugador.mover(movX, movY);
+    this.jugador.girar(tecla);
   }
 };
 
@@ -169,7 +177,8 @@ Juego.dibujar = function() {
     Dibujante.dibujarRectangulo('red', x, 0, tamanio, 8);
   }
 };
-
+//Dibujar la llegada
+  // Dibujante.dibujarRectangulo('green', 0, 0, 10, 8)
 
 
 /* Recorre los enemigos haciendo que se muevan. De la misma forma que hicimos
@@ -203,7 +212,7 @@ Juego.chequearColisiones = function(x, y) {
   var puedeMoverse = true
   this.obstaculos().forEach(function(obstaculo) {
     if (this.intersecan(obstaculo, this.jugador, x, y)) {
-
+      obstaculo.chocar(this.jugador);
       /*COMPLETAR, obstaculo debe chocar al jugador*/
 
       puedeMoverse = false

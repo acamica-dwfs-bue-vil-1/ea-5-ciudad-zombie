@@ -5,7 +5,7 @@ el archivo Enemigo.js para entender que es cada uno. */
 
 class ZombieCaminante extends Enemigo {
   constructor (sprite, x, y, velocidad) {
-    super(sprite, x, y, 10, 10, velocidad, {desdeX: 0, hastaX: 577, desdeY: 0, hastaY: 961});
+    super(sprite, x, y, 10, 10, velocidad, {desdeX: 0, hastaX: 961, desdeY: 0, hastaY: 577});
   }
   mover () {
     if (Math.random() < 0.5) {
@@ -27,9 +27,6 @@ class ZombieCaminante extends Enemigo {
     if ((this.y < this.rangoMov.desdeY) || (this.y > this.rangoMov.hastaY)) {
       this.y = this.rangoMov.desdeY + (this.rangoMov.hastaY - this.rangoMov.desdeY)/2;
     }
-  }
-  atacar () {
-    super.atacar(2);
   }
 }
 

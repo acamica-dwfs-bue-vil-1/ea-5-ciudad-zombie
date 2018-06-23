@@ -21,6 +21,7 @@ var Juego = {
     /*Aca se van a agregar los obstaculos visibles. Tenemos una valla horizontal
     de ejemplo, pero podras agregar muchos mas. */
     new VallaHorizontal(70, 430),
+    new VallaHorizontal(100, 430),
     new VallaHorizontal(540, 300),
     new Bache(130, 260),
     new Bache(760, 265),    
@@ -52,7 +53,10 @@ var Juego = {
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
-
+    new ZombieCaminante1(100, 50),
+    new ZombieCaminante2(110, 60),
+    new ZombieCaminante3(120, 70),
+    new ZombieCaminante4(130, 80),
   ]
 
 }
@@ -166,7 +170,8 @@ Juego.dibujar = function() {
 
   // Se recorren los enemigos pintandolos
   this.enemigos.forEach(function(enemigo) {
-    /* Completar */
+    /* Completar */    
+    Dibujante.dibujarEntidad(enemigo);
   });
 
   // El dibujante dibuja las vidas del jugador
@@ -176,10 +181,9 @@ Juego.dibujar = function() {
     var x = tamanio * i
     Dibujante.dibujarRectangulo('red', x, 0, tamanio, 8);
   }
+  //Dibujar la llegada  
+  Dibujante.dibujarRectangulo ('green', 760, 540, 125, 20);
 };
-//Dibujar la llegada
-  // Dibujante.dibujarRectangulo('green', 0, 0, 10, 8)
-
 
 /* Recorre los enemigos haciendo que se muevan. De la misma forma que hicimos
 un recorrido por los enemigos para dibujarlos en pantalla ahora habra que hacer
@@ -276,3 +280,4 @@ document.addEventListener('keydown', function(e) {
 
   Juego.capturarMovimiento(allowedKeys[e.keyCode]);
 });
+

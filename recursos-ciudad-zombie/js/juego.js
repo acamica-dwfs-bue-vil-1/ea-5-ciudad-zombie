@@ -59,7 +59,10 @@ var Juego = {
     new ZombieCaminante4(130, 80),
     new ZombieConductorHorizontal(5),
     new ZombieConductorVertical(644, 5),
-    new ZombieConductorVertical(678, 3)
+    new ZombieConductorVertical(678, 3),
+    new Amigo(80, 455),
+    new Amigo(370, 120),
+    new Amigo(860, 320),
   ]
 
 }
@@ -87,7 +90,8 @@ Juego.iniciarRecursos = function() {
     'imagenes/auto_rojo_derecha.png',
     'imagenes/auto_rojo_izquierda.png',
     'imagenes/auto_verde_abajo.png',
-    'imagenes/auto_verde_derecha.png'
+    'imagenes/auto_verde_derecha.png',
+    'imagenes/acamica.svg'
   ]);
   Resources.onReady(this.comenzar.bind(Juego));
 };
@@ -184,8 +188,10 @@ Juego.dibujar = function() {
     var x = tamanio * i
     Dibujante.dibujarRectangulo('red', x, 0, tamanio, 8);
   }
-  //Dibujar la llegada  
-  Dibujante.dibujarRectangulo ('green', 760, 540, 125, 20);
+  //Dibujar la llegada 
+  if (!this.terminoJuego() && !this.ganoJuego()) {  
+    Dibujante.dibujarRectangulo ('green', 760, 540, 125, 20);
+  }
 };
 
 /* Recorre los enemigos haciendo que se muevan. De la misma forma que hicimos
@@ -249,12 +255,15 @@ Juego.intersecan = function(elemento1, elemento2, x, y) {
 Juego.dibujarFondo = function() {
   // Si se termino el juego hay que mostrar el mensaje de game over de fondo
   if (this.terminoJuego()) {
+    this.reiniciarTablero();
     Dibujante.dibujarImagen('imagenes/mensaje_gameover.png', 0, 5, this.anchoCanvas, this.altoCanvas);
     document.getElementById('reiniciar').style.visibility = 'visible';
+    
   }
 
   // Si se gano el juego hay que mostrar el mensaje de ganoJuego de fondo
   else if (this.ganoJuego()) {
+    this.reiniciarTablero();    
     Dibujante.dibujarImagen('imagenes/Splash.png', 190, 113, 500, 203);
     document.getElementById('reiniciar').style.visibility = 'visible';
   } else {
@@ -286,3 +295,11 @@ document.addEventListener('keydown', function(e) {
   Juego.capturarMovimiento(allowedKeys[e.keyCode]);
 });
 
+//Se reinician los elementos para que no queden dibujados al terminar o ganar el juego.
+Juego.reiniciarTablero = function () {
+  this.obstaculosCarretera = [];
+  this.enemigos = [];
+  this.jugador.ancho = 0;
+  this.jugador.alto = 0;
+  this.jugador.vidas = 0;
+}

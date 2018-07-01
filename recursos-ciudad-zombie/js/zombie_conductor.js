@@ -18,7 +18,8 @@ class ZombieConductorHorizontal extends Enemigo {
     }
   }
   atacar (jugador) {
-    jugador.perderVidas(5);    
+    jugador.perderVidas(5);  
+    document.getElementById('crash').play();                  
   }
 }
 
@@ -39,6 +40,3 @@ class ZombieConductorVertical extends Enemigo {
     jugador.perderVidas(5);    
   }
 }
-/* Completar creacion del ZombieConductor */
-
-/* Completar metodos para el movimiento y el ataque */

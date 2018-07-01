@@ -256,9 +256,9 @@ Juego.dibujarFondo = function() {
   if (this.terminoJuego()) {
     Dibujante.dibujarImagen('imagenes/mensaje_gameover.png', 0, 5, this.anchoCanvas, this.altoCanvas);
     document.getElementById('reiniciar').style.visibility = 'visible';
-    
-    document.getElementById('game-over').play();
-    setTimeout(() => document.getElementById('game-over').muted = true, 4000);
+    setTimeout(() => document.getElementById('game-over').play(), 2000);    
+    ;
+    setTimeout(() => document.getElementById('game-over').muted = true, 6000);
     this.reiniciarTablero();
   }
 

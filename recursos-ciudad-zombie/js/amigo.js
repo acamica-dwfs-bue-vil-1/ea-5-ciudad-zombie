@@ -10,6 +10,7 @@ class Amigo extends Enemigo {
     if (jugador.vidas < 5 && this.primerAtaque === true) {
     jugador.perderVidas(-1); 
     this.primerAtaque = false; 
+    document.getElementById('life').currentTime = 0;        
     document.getElementById('life').play();        
     }
   }

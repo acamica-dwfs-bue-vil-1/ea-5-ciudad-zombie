@@ -18,6 +18,7 @@ class Obstaculo {
     if (this.primerChoque) {
       jugador.vidas -= this.potencia;
       this.primerChoque = false;
+    document.getElementById('crash').play();      
     }
   }
 }

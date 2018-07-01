@@ -229,7 +229,6 @@ Juego.chequearColisiones = function(x, y) {
     if (this.intersecan(obstaculo, this.jugador, x, y)) {
       obstaculo.chocar(this.jugador);
       /*COMPLETAR, obstaculo debe chocar al jugador*/
-
       puedeMoverse = false
     }
   }, this)
@@ -255,17 +254,21 @@ Juego.intersecan = function(elemento1, elemento2, x, y) {
 Juego.dibujarFondo = function() {
   // Si se termino el juego hay que mostrar el mensaje de game over de fondo
   if (this.terminoJuego()) {
-    this.reiniciarTablero();
     Dibujante.dibujarImagen('imagenes/mensaje_gameover.png', 0, 5, this.anchoCanvas, this.altoCanvas);
     document.getElementById('reiniciar').style.visibility = 'visible';
     
+    document.getElementById('game-over').play();
+    setTimeout(() => document.getElementById('game-over').muted = true, 4000);
+    this.reiniciarTablero();
   }
 
   // Si se gano el juego hay que mostrar el mensaje de ganoJuego de fondo
   else if (this.ganoJuego()) {
-    this.reiniciarTablero();    
     Dibujante.dibujarImagen('imagenes/Splash.png', 190, 113, 500, 203);
     document.getElementById('reiniciar').style.visibility = 'visible';
+    document.getElementById('game-over').muted = true;        
+    document.getElementById('win').play();
+    this.reiniciarTablero();            
   } else {
     Dibujante.dibujarImagen('imagenes/mapa.png', 0, 5, this.anchoCanvas, this.altoCanvas);
   }
@@ -291,7 +294,6 @@ document.addEventListener('keydown', function(e) {
     39: 'der',
     40: 'abajo'
   };
-
   Juego.capturarMovimiento(allowedKeys[e.keyCode]);
 });
 

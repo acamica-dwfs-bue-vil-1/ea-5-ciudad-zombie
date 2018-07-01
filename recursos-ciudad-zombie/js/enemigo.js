@@ -25,7 +25,8 @@ class Enemigo {
     this.atacando = false;
   }
   atacar (jugador) {
-  jugador.perderVidas(1);    
+    jugador.perderVidas(1);
+    document.getElementById('zombie').play();            
   }
   comenzarAtaque (jugador) {
     if (!this.atacando) {

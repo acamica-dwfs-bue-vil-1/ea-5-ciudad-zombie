@@ -19,6 +19,7 @@ class ZombieConductorHorizontal extends Enemigo {
   }
   atacar (jugador) {
     jugador.perderVidas(5);  
+    document.getElementById('crash').currentTime = 0;                  
     document.getElementById('crash').play();                  
   }
 }

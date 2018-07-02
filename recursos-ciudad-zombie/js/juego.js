@@ -257,7 +257,6 @@ Juego.dibujarFondo = function() {
     Dibujante.dibujarImagen('imagenes/mensaje_gameover.png', 0, 5, this.anchoCanvas, this.altoCanvas);
     document.getElementById('reiniciar').style.visibility = 'visible';
     setTimeout(() => document.getElementById('game-over').play(), 2000);    
-    ;
     setTimeout(() => document.getElementById('game-over').muted = true, 6000);
     this.reiniciarTablero();
   }
@@ -266,8 +265,10 @@ Juego.dibujarFondo = function() {
   else if (this.ganoJuego()) {
     Dibujante.dibujarImagen('imagenes/Splash.png', 190, 113, 500, 203);
     document.getElementById('reiniciar').style.visibility = 'visible';
-    document.getElementById('game-over').muted = true;        
+    document.getElementById('game-over').muted = true;            
     document.getElementById('win').play();
+    setTimeout(() => document.getElementById('win').muted = true, 1900);
+    this.anchoCanvas = 0;    
     this.reiniciarTablero();            
   } else {
     Dibujante.dibujarImagen('imagenes/mapa.png', 0, 5, this.anchoCanvas, this.altoCanvas);
@@ -303,5 +304,4 @@ Juego.reiniciarTablero = function () {
   this.enemigos = [];
   this.jugador.ancho = 0;
   this.jugador.alto = 0;
-  this.jugador.vidas = 0;
 }

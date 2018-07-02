@@ -54,9 +54,11 @@ var Juego = {
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
     new ZombieCaminante1(100, 50),
-    new ZombieCaminante2(110, 60),
-    new ZombieCaminante3(120, 70),
+    new ZombieCaminante1(540, 760),
+    new ZombieCaminante2(300, 80),
+    new ZombieCaminante3(500, 550),
     new ZombieCaminante4(130, 80),
+    new ZombieCaminante4(540, 250),
     new ZombieConductorHorizontal(5),
     new ZombieConductorVertical(644, 5),
     new ZombieConductorVertical(678, 3),
@@ -218,8 +220,6 @@ Juego.calcularAtaques = function() {
     }
   }, this);
 };
-
-
 
 /* Aca se chequea si el jugador se peude mover a la posicion destino.
  Es decir, que no haya obstaculos que se interpongan. De ser asi, no podra moverse */
